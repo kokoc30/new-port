@@ -221,28 +221,32 @@ function initContactForm() {
 }
 
 // Resume download functionality
+// Resume download functionality (password protected)
 function initResumeDownload() {
     const downloadBtn = document.getElementById('download-resume');
+    const resumePassword = 'mySecret123';  // <-- your chosen password
     
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
             e.preventDefault();
             
-            // Create a temporary notification
-            showNotification('Resume download would start here. Please add your actual resume file.', 'info');
-            
-            // Uncomment and modify this when you have an actual resume file
-            /*
-            const link = document.createElement('a');
-            link.href = 'path/to/your/resume.pdf';
-            link.download = 'Koko_Jamgotchian_Resume.pdf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            */
+            const pass = prompt('Enter password to download resume:');
+            if (pass === resumePassword) {
+                const link = document.createElement('a');
+                link.href = 'Koko_Jamgotchian_Resume.pdf';
+                link.download = 'Koko_Jamgotchian_Resume.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showNotification('Resume download started...', 'success');
+            } else {
+                showNotification('Incorrect password', 'error');
+            }
         });
     }
 }
+
 
 // Notification system
 function showNotification(message, type = 'info') {
