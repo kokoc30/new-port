@@ -220,11 +220,10 @@ function initContactForm() {
     }
 }
 
-// Resume download functionality
 // Resume download functionality (password protected)
 function initResumeDownload() {
     const downloadBtn = document.getElementById('download-resume');
-    const resumePassword = 'mySecret123';  // <-- your chosen password
+    const resumePassword = 'kokosaro9';  
     
     if (downloadBtn) {
         downloadBtn.addEventListener('click', (e) => {
